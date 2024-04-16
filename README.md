@@ -1,3 +1,32 @@
+ANÁLISADOR LÉXICO QUE CONSIGA INTERPRETAR TAIS CADEIAS;
+a) Comentários:
+
+a.1) Cadeias de comentários: cadeias contidas entre chaves (inclusive), mono/multi-linhas ( {...} )
+b) Identificadores*:
+b.1) Variáveis, representadas por cadeias de tamanho variável:
+            - Cadeias contendo: 1º símbolo letra, demais símbolos letras, dígitos ou sublinhado
+            - Símbolos: letras A-Z,a-z, dígitos 0-9 e sublinhado
+            - Tamanho: mínimo 1 símbolo, máximo 30 símbolos, excedentes devem ser descartados, indicando o descarte e o ponto onde iniciou
+
+b.2) Palavras reservadas, representadas pelas seguintes cadeias fixas:
+            if, then, else end, repeat, until | read, write
+*Use o princípio da precedência de classe.
+c.2) Comparações: menor-igual (<=), maior-igual (>=), igual (=), diferente (!=)
+
+c.4) Atribuição: transferências de resultados de expressões para variável (:=), podendo ser variável uma expressão
+d.3) Reais**: cadeias contendo decimais positivos, negativos e sinal apenas quando negativo, formato iii.nnn, onde: ‘iii’ indica a parte inteira, ‘.’ o indicador decimal e ‘nnn’ a parte não inteira
+            - Tamanho: mínimo 3 símbolos -> ‘i.n’, máximo 13 símbolos -> ‘iiiiiii.nnnnn’, mais o sinal ( - )
+d.6) String: cadeias delimitados por aspas duplas ( “”, inclusive), contendo qualquer símbolo entre os códigos 32 e 126 da tabela ASCII, exceto os delimitadores ( “” ), mono/multi-linhas
+
+           - Tamanho: cadeias entre 0 e 126 símbolos, desconsiderando os delimitadores; cadeias maiores que 126 símbolos devem ser consideradas rejeitadas !
+e) Símbolos especiais:
+
+e.1) Separador de sentenças: ponto e vírgula (;)
+
+e.2) Parênteses: contêiner para associações, usado em expressões ( (...) )
+e.7) Símbolos branco: espaço ( ‘sp’  ASCII 32/20), tabulação ( ® ASCII 32/09), salto de linha ( LF ASCII 10/0A ), retorno de carro ( CR ASCII 13/0D)
+
+
 1.2 - Identificadores para cada classe de cadeia (lexemas) de linguagens de programação definidas no item 1.1:
 
 a.1) Comentários: TKN_COMMENT
