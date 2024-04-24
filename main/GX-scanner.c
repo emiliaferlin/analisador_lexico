@@ -40,7 +40,7 @@ int main() {
                     } else {
                         printf("Caractere ==> %c ", linha[i]);
                         printf("Erro no esatdo 0\n");
-                        state = 0;
+                        state = 3;
                     }
                     break;
 
@@ -76,7 +76,11 @@ int main() {
                     if ((linha[i] >= 'A' && linha[i] <= 'Z') || (linha[i] >= 'a' && linha[i] <= 'z')) {
                         printf("Caractere ==> %c ", linha[i]);
                         printf("Acerto no estado 0\n");
-                        stateb1 = 1;
+                        if((linha[i + 1] >= 'A' && linha[i + 1] <= 'Z') || (linha[i + 1] >= 'a' && linha[i + 1] <= 'z')){
+                            stateb1 = 0;
+                        }else{
+                            stateb1 = 1;
+                        }
 
                     } else {
                         printf("Caractere ==> %c ", linha[i]);
@@ -90,7 +94,15 @@ int main() {
                     if ((linha[i] >= '0' && linha[i] <= '9') || linha[i] == '_') {
                         printf("Caractere ==> %c ", linha[i]);
                         printf("Acerto no estado 1\n");
-                        stateb1 = 2;
+                        if(cont_linha == (i+1)){
+                            stateb1 = 2;
+                        }else{
+                            if((linha[i + 1] >= 'A' && linha[i + 1] <= 'Z') || (linha[i + 1] >= 'a' && linha[i + 1] <= 'z')){
+                                stateb1 = 0;
+                            }else{
+                                stateb1 = 1;
+                            }
+                        }
 
                     } else {
                         printf("Caractere ==> %c ", linha[i]);
@@ -113,6 +125,52 @@ int main() {
             printf("\n");
         }
 
+        int stateb2 = 0;
+        i = 0;
+         while (i < cont_linha) {
+            switch (stateb2) {
+                case 0:
+                    if (linha[i] == 'i') {
+                        printf("Caractere ==> %c ", linha[i]);
+                        printf("Acerto no estado 0\n");
+                        stateb2 = 1;
+
+                    } else {
+                        printf("Caractere ==> %c ", linha[i]);
+                        printf("Erro no estado 0\n");
+                        stateb2 = 3;
+                    }
+
+                    break;
+
+                case 1:
+                    if (linha[i] == 'f') {
+                        printf("Caractere ==> %c ", linha[i]);
+                        printf("Acerto no estado 1\n");
+                        stateb2 = 2;
+
+                    } else {
+                        printf("Caractere ==> %c ", linha[i]);
+                        printf("Erro no estado 1\n");
+                        stateb2 = 3;
+                    }
+
+                    break;
+
+
+            }
+            i++;
+        }
+
+
+         if (stateb2 == 2) {
+            printf("Acepet: Cadeia aceita b.2 \n");
+            printf("\n");
+        } else {
+            printf("Error: Cadeia nao reconhecida b.2 \n");
+            printf("\n");
+        }
+
         int statec2 = 0;
         i = 0;
          while (i < cont_linha) {
@@ -130,7 +188,7 @@ int main() {
                     } else {
                         printf("Caractere ==> %c ", linha[i]);
                         printf("Erro no estado 0\n");
-                        statec2 = 1;
+                        statec2 = 3;
                     }
 
                     break;
@@ -144,7 +202,7 @@ int main() {
                     } else {
                         printf("Caractere ==> %c ", linha[i]);
                         printf("Erro no estado 1\n");
-                        statec2 = 0;
+                        statec2 = 3;
                     }
 
                     break;
@@ -159,6 +217,127 @@ int main() {
             printf("\n");
         } else {
             printf("Error: Cadeia nao reconhecida c.2 \n");
+            printf("\n");
+        }
+
+        int statec4 = 0;
+        i = 0;
+         while (i < cont_linha) {
+            switch (statec4) {
+                case 0:
+                    if (linha[i] == '=') {
+                        printf("Caractere ==> %c ", linha[i]);
+                        printf("Acerto no estado 0\n");
+                        statec4 = 1;
+
+                    } else {
+                        printf("Caractere ==> %c ", linha[i]);
+                        printf("Erro no estado 0\n");
+                        statec4 = 3;
+                    }
+
+                    break;
+
+                case 1:
+                    if (linha[i] == ':') {
+                        printf("Caractere ==> %c ", linha[i]);
+                        printf("Acerto no estado 1\n");
+                        statec4 = 2;
+
+                    } else {
+                        printf("Caractere ==> %c ", linha[i]);
+                        printf("Erro no estado 1\n");
+                        statec4 = 3;
+                    }
+
+                    break;
+
+            }
+            i++;
+        }
+
+
+         if (statec4 == 2) {
+            printf("Acepet: Cadeia aceita c.4 \n");
+            printf("\n");
+        } else {
+            printf("Error: Cadeia nao reconhecida c.4 \n");
+            printf("\n");
+        }
+
+        int statee1 = 0;
+        i = 0;
+         while (i < cont_linha) {
+            switch (statee1) {
+                case 0:
+                    if (linha[i] == ';') {
+                        printf("Caractere ==> %c ", linha[i]);
+                        printf("Acerto no estado 0\n");
+                        statee1 = 1;
+
+                    } else {
+                        printf("Caractere ==> %c ", linha[i]);
+                        printf("Erro no estado 0\n");
+                        statee1 = 2;
+                    }
+
+                    break;
+
+            }
+            i++;
+        }
+
+
+         if (statee1 == 1) {
+            printf("Acepet: Cadeia aceita e.1 \n");
+            printf("\n");
+        } else {
+            printf("Error: Cadeia nao reconhecida e.1 \n");
+            printf("\n");
+        }
+
+        int statee2 = 0;
+        i = 0;
+         while (i < cont_linha) {
+            switch (statee2) {
+                case 0:
+                    if (linha[i] == '(') {
+                        printf("Caractere ==> %c ", linha[i]);
+                        printf("Acerto no estado 0\n");
+                        statee2 = 1;
+
+                    } else {
+                        printf("Caractere ==> %c ", linha[i]);
+                        printf("Erro no estado 0\n");
+                        statee2 = 3;
+                    }
+
+                    break;
+
+                case 1:
+                    if (linha[i] == ')') {
+                        printf("Caractere ==> %c ", linha[i]);
+                        printf("Acerto no estado 1\n");
+                        statee2 = 2;
+
+                    } else {
+                        printf("Caractere ==> %c ", linha[i]);
+                        printf("Erro no estado 1\n");
+                        statee2 = 1;
+                    }
+
+                    break;
+
+            }
+            i++;
+        }
+
+
+         if (statee2 == 2) {
+            printf("Acepet: Cadeia aceita e.2 \n");
+            printf("\n");
+        } else {
+            printf("Error: Cadeia nao reconhecida e.2 \n");
             printf("\n");
         }
 
