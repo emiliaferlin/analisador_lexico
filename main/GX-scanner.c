@@ -13,8 +13,11 @@ int main() {
         return 1;
     }
 
-    // Lê e exibe cada linha do arquivo
+    int numLinha = 0;
+
+    // Lê cada linha do arquivo
     while (fgets(linha, sizeof(linha), arquivo) != NULL) {
+        numLinha++;
 
         // Remove o caractere de nova linha, se existir
         if (linha[strlen(linha) - 1] == '\n')
@@ -27,9 +30,8 @@ int main() {
 
         int state = 0;
         int i = 0;
-        printf("quantidade linha ==> %d", cont_linha);
-        printf("\n");
 
+        printf("\n");
         while (i < cont_linha) {
             switch (state) {
                 case 0:
@@ -61,10 +63,16 @@ int main() {
         }
 
          if (state == 2) {
-            printf("Acepet: Cadeia aceita a.1 \n");
+            printf("#%d", numLinha);
+            printf(" --> TKN_COMMENT --> ");
+            printf("Accept --> ");
+            printf("%s ", linha);
             printf("\n");
         } else {
-            printf("Error: Cadeia nao reconhecida a.1 \n");
+            printf("#%d", numLinha);
+            printf(" --> TKN_COMMENT --> ");
+            printf("Reject --> ");
+            printf("%s ", linha);
             printf("\n");
         }
 
@@ -117,11 +125,17 @@ int main() {
         }
 
 
-         if (stateb1 == 2) {
-            printf("Acepet: Cadeia aceita b.1 \n");
+        if (state == 2) {
+            printf("#%d", numLinha);
+            printf(" --> TKN_VAR --> ");
+            printf("Accept --> ");
+            printf("%s ", linha);
             printf("\n");
         } else {
-            printf("Error: Cadeia nao reconhecida b.1 \n");
+            printf("#%d", numLinha);
+            printf(" --> TKN_VAR --> ");
+            printf("Reject --> ");
+            printf("%s ", linha);
             printf("\n");
         }
 
@@ -163,11 +177,17 @@ int main() {
         }
 
 
-         if (stateb2 == 2) {
-            printf("Acepet: Cadeia aceita b.2 \n");
+         if (state == 2) {
+            printf("#%d", numLinha);
+            printf(" --> TKN_RESWORD --> ");
+            printf("Accept --> ");
+            printf("%s ", linha);
             printf("\n");
         } else {
-            printf("Error: Cadeia nao reconhecida b.2 \n");
+            printf("#%d", numLinha);
+            printf(" --> TKN_RESWORD --> ");
+            printf("Reject --> ");
+            printf("%s ", linha);
             printf("\n");
         }
 
@@ -211,12 +231,18 @@ int main() {
             i++;
         }
 
-
-         if (statec2 == 2) {
-            printf("Acepet: Cadeia aceita c.2 \n");
+        //c.2) Comparações: TKN_LTEQ (<=), TKN_GTEQ (>=), TKN_EQ (=), TKN_DIFF (!=) REVER
+         if (state == 2) {
+            printf("#%d", numLinha);
+            printf(" --> TKN_LTEQ --> ");
+            printf("Accept --> ");
+            printf("%s ", linha);
             printf("\n");
         } else {
-            printf("Error: Cadeia nao reconhecida c.2 \n");
+            printf("#%d", numLinha);
+            printf(" --> TKN_LTEQ --> ");
+            printf("Reject --> ");
+            printf("%s ", linha);
             printf("\n");
         }
 
@@ -256,12 +282,18 @@ int main() {
             i++;
         }
 
-
-         if (statec4 == 2) {
-            printf("Acepet: Cadeia aceita c.4 \n");
+        //c4
+         if (state == 2) {
+            printf("#%d", numLinha);
+            printf(" --> TKN_ASSIGN --> ");
+            printf("Accept --> ");
+            printf("%s ", linha);
             printf("\n");
         } else {
-            printf("Error: Cadeia nao reconhecida c.4 \n");
+            printf("#%d", numLinha);
+            printf(" --> TKN_ASSIGN --> ");
+            printf("Reject --> ");
+            printf("%s ", linha);
             printf("\n");
         }
 
@@ -287,12 +319,18 @@ int main() {
             i++;
         }
 
-
-         if (statee1 == 1) {
-            printf("Acepet: Cadeia aceita e.1 \n");
+        //e1
+        if (state == 2) {
+            printf("#%d", numLinha);
+            printf(" --> TKN_STMSEP --> ");
+            printf("Accept --> ");
+            printf("%s ", linha);
             printf("\n");
         } else {
-            printf("Error: Cadeia nao reconhecida e.1 \n");
+            printf("#%d", numLinha);
+            printf(" --> TKN_STMSEP --> ");
+            printf("Reject --> ");
+            printf("%s ", linha);
             printf("\n");
         }
 
@@ -332,12 +370,18 @@ int main() {
             i++;
         }
 
-
-         if (statee2 == 2) {
-            printf("Acepet: Cadeia aceita e.2 \n");
+        //e.2) Parênteses: TKN_LEFTPAR, TKN_RIGHTPAR ( (...) )
+         if (state == 2) {
+            printf("#%d", numLinha);
+            printf(" --> TKN_LEFTPAR --> ");
+            printf("Accept --> ");
+            printf("%s ", linha);
             printf("\n");
         } else {
-            printf("Error: Cadeia nao reconhecida e.2 \n");
+            printf("#%d", numLinha);
+            printf(" --> TKN_LEFTPAR --> ");
+            printf("Reject --> ");
+            printf("%s ", linha);
             printf("\n");
         }
 
