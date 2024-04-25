@@ -1,5 +1,17 @@
 #include <stdio.h>
 
+/*HEADER***********************************************************************
+* INSTITUITION  : IFSul - Passo Fundo
+* COURSE/SUBJECT: BCC – Compilers – AT01: Lex Analysis Work
+* DATE          : 28/04/2024
+* FILENAME      : GX-scanner.c
+* DESCRIPTION   : Analisador léxico
+*       XXX YYY.
+* AUTHOR(S)     : Emilia Ferlin e Natália Bernardo Nunes
+* NOTES         : G4
+*       XXX YYY.
+**************************************************************************END*/
+
 int main() {
     FILE *arquivo;
     char linha[300]; // Tamanho máximo de cada linha
@@ -276,23 +288,17 @@ int main() {
          while (i < cont_linha) {
             switch (stated3) {
                 case 0:
-                    if (linha[i] == '"') {
+                    if (linha[i] == '-') {
                         stated3 = 1;
 
                     } else {
-                        stated3 = 4;
+                        stated3 = 1;
                     }
 
                     break;
 
                 case 1:
-                    if (linha[i] == ' '|| linha[i] == '!' || linha[i] == '#' || linha[i] == '$' || linha[i] == '%' || linha[i] == '&' ||
-                        linha[i] == "'" || linha[i] == '(' || linha[i] == ')' || linha[i] == '*' || linha[i] == '+' || linha[i] == ',' ||
-                        linha[i] == '-' || linha[i] == '.' || linha[i] == '/' || linha[i] == ':' || linha[i] == ';' || linha[i] == '<' ||
-                        linha[i] == '=' || linha[i] == '>' || linha[i] == '?' || linha[i] == '@' || linha[i] == '[' || linha[i] == ']' ||
-                        linha[i] == '^' || linha[i] == '_' || linha[i] == '`' || linha[i] == '{' || linha[i] == '|' || linha[i] == '}' ||
-                        linha[i] == '~' || (linha[i] >= 'A' && linha[i] <= 'Z') || (linha[i] >= 'a' && linha[i] <= 'z') ||
-                        (linha[i] >= '0' && linha[i] <= '9')) {
+                    if ((linha[i] >= '0' && linha[i] <= '9')) {
                         stated3 = 1;
 
                     } else {
@@ -302,11 +308,21 @@ int main() {
                     break;
 
                 case 2:
-                    if (linha[i] == '"') {
+                    if (linha[i] == '.') {
                         stated3 = 3;
 
                     } else {
+                        stated3 = 5;
+                    }
+
+                    break;
+
+                case 3:
+                    if ((linha[i] >= '0' && linha[i] <= '9')) {
                         stated3 = 4;
+
+                    } else {
+                        stated3 = 5;
                     }
 
                     break;
@@ -315,7 +331,7 @@ int main() {
             i++;
         }
 
-         if (stated3 == 3) {
+         if (stated3 == 4) {
             printf("#%d", numLinha);
             printf(" --> TKN_NUMREAL --> ");
             printf("Accept --> ");
