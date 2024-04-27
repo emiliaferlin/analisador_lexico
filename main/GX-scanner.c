@@ -17,12 +17,14 @@ int main() {
     char linha[500];
 
     /* CODE COMMENTS***************************************************************
-    * Abre o arquivo em modo de leitura ("r")      XXX YYY.
+    * Abre o arquivo em modo de leitura ("r")
+     XXX YYY.
     **************************************************************************END*/
     arquivo = fopen("GX-cadeias_entrada.txt", "r");
 
     /* CODE COMMENTS***************************************************************
-    * Verifica se o arquivo foi aberto corretamente      XXX YYY.
+    * Verifica se o arquivo foi aberto corretamente
+     XXX YYY.
     **************************************************************************END*/
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo.\n");
@@ -32,7 +34,8 @@ int main() {
     int numLinha = 0;
 
     /* CODE COMMENTS***************************************************************
-    * Le cada linha do arquivo      XXX YYY.
+    * Le cada linha do arquivo
+    XXX YYY.
     **************************************************************************END*/
     while (fgets(linha, sizeof(linha), arquivo) != NULL) {
          numLinha++;
@@ -42,17 +45,20 @@ int main() {
         }
 
         /* CODE COMMENTS***************************************************************
-        *       XXX YYY.
+        *
+        XXX YYY.
         **************************************************************************END*/
         automatoComentarioA1(contLinha, numLinha, linha);
 
         /* CODE COMMENTS***************************************************************
-        *       XXX YYY.
+        *
+        XXX YYY.
         **************************************************************************END*/
         automatoVariavelB1(contLinha, numLinha, linha);
 
         /* CODE COMMENTS***************************************************************
-        *       XXX YYY.
+        *
+        XXX YYY.
         **************************************************************************END*/
         palavrasReservadasB2(contLinha, numLinha, linha);
 
@@ -62,7 +68,8 @@ int main() {
         automatoComparacaoC2(contLinha, numLinha, linha);
 
         /* CODE COMMENTS***************************************************************
-        *       XXX YYY.
+        *
+        XXX YYY.
         **************************************************************************END*/
         automatoAtribuicaoC4(contLinha, numLinha, linha);
 
@@ -72,7 +79,8 @@ int main() {
         automatoReaisD3(contLinha, numLinha, linha);
 
         /* CODE COMMENTS***************************************************************
-        *       XXX YYY.
+        *
+        XXX YYY.
         **************************************************************************END*/
         automatoStringD6(contLinha, numLinha, linha);
 
@@ -82,18 +90,23 @@ int main() {
         automatoSeparadorSentencasE1(contLinha, numLinha, linha);
 
         /* CODE COMMENTS***************************************************************
-        *       XXX YYY.
+        *
+        XXX YYY.
         **************************************************************************END*/
         automatoParentesesE2(contLinha, numLinha, linha);
 
         /* CODE COMMENTS***************************************************************
-        *       XXX YYY.
+        *
+        XXX YYY.
         **************************************************************************END*/
         automatoSimbolosBrancoE7(contLinha, numLinha, linha);
 
     }
 
-    // Fecha o arquivo após a leitura
+    /* CODE COMMENTS***************************************************************
+    *  Fecha o arquivo após a leitura
+    XXX YYY.
+    **************************************************************************END*/
     fclose(arquivo);
 
     return 0;
@@ -149,7 +162,6 @@ void automatoVariavelB1(int contLinha, int numLinha, char linha[300]){
     //remove o pula linha, assim dando o valor real de caracteres
     contLinha = contLinha - 1;
     int stateb1 = 0;
-    i = 0;
      while (i < contLinha) {
         switch (stateb1) {
             case 0:
@@ -161,7 +173,7 @@ void automatoVariavelB1(int contLinha, int numLinha, char linha[300]){
                     }
 
                 } else {
-                    stateb1 = 1;
+                    stateb1 = 4;
                 }
 
                 break;
@@ -211,7 +223,6 @@ void palavrasReservadasB2(int contLinha, int numLinha, char linha[300]){
     //remove o pula linha, assim dando o valor real de caracteres
     contLinha = contLinha - 1;
     int stateb2 = 0;
-    i = 0;
      while (i < contLinha) {
         switch (stateb2) {
             case 0:
@@ -261,19 +272,32 @@ void automatoComparacaoC2(int contLinha, int numLinha, char linha[300]){
     int i = 0;
     //remove o pula linha, assim dando o valor real de caracteres
     contLinha = contLinha - 1;
+    bool maior = false;
+    bool menor = false;
+    bool diferente = false;
+    bool igual = false;
     int statec2 = 0;
-    i = 0;
      while (i < contLinha) {
         switch (statec2) {
             case 0:
                 if (linha[i] == '<' || linha[i] == '>' || linha[i] == '!' || linha[i] == '=') {
                     if(linha[i] == '='){
                         if(contLinha == 1){
+                            igual = true;
                             statec2 = 2;
                         }else{
                             statec2 = 3;
                         }
                     }else{
+                        if(linha[i] == '<'){
+                            menor = true;
+                        }
+                        if(linha[i] == '>'){
+                            maior = true;
+                        }
+                        if(linha[i] == '!'){
+                            diferente = true;
+                        }
                         statec2 = 1;
                     }
 
@@ -301,16 +325,37 @@ void automatoComparacaoC2(int contLinha, int numLinha, char linha[300]){
         i++;
     }
 
-    //KN_LTEQ (<=), TKN_GTEQ (>=), TKN_EQ (=), TKN_DIFF (!=) REVER
-     if (statec2 == 2) {
+     if (statec2 == 2 && maior == true) {
         printf("#%d", numLinha);
-        printf(" --> TKN_LTEQ --> ");
+        printf(" --> TKN_GTEQ --> ");
         printf("Accept --> ");
         printf("%s ", linha);
         printf("\n");
-    } else {
+    }
+    else if (statec2 == 2 && menor == true) {
         printf("#%d", numLinha);
-        printf(" --> TKN_LTEQ --> ");
+        printf(" --> KN_LTEQ --> ");
+        printf("Accept --> ");
+        printf("%s ", linha);
+        printf("\n");
+    }
+    else if (statec2 == 2 && diferente == true) {
+        printf("#%d", numLinha);
+        printf(" --> TKN_DIFF --> ");
+        printf("Accept --> ");
+        printf("%s ", linha);
+        printf("\n");
+    }
+    else if (statec2 == 2 && igual == true) {
+        printf("#%d", numLinha);
+        printf(" --> TKN_EQ --> ");
+        printf("Accept --> ");
+        printf("%s ", linha);
+        printf("\n");
+    }
+     else {
+        printf("#%d", numLinha);
+        printf(" --> KN_LTEQ, TKN_GTEQ, TKN_EQ, TKN_DIFF --> ");
         printf("Reject --> ");
         printf("%s ", linha);
         printf("\n");
@@ -322,7 +367,6 @@ void automatoAtribuicaoC4(int contLinha, int numLinha, char linha[300]){
     //remove o pula linha, assim dando o valor real de caracteres
     contLinha = contLinha - 1;
     int statec4 = 0;
-    i = 0;
      while (i < contLinha) {
         switch (statec4) {
             case 0:
@@ -370,7 +414,6 @@ void automatoReaisD3(int contLinha, int numLinha, char linha[300]){
     //remove o pula linha, assim dando o valor real de caracteres
     contLinha = contLinha - 1;
     int stated3 = 0;
-    i = 0;
      while (i < contLinha) {
         switch (stated3) {
             case 0:
@@ -386,9 +429,15 @@ void automatoReaisD3(int contLinha, int numLinha, char linha[300]){
             case 1:
                 if ((linha[i] >= '0' && linha[i] <= '9')) {
                     stated3 = 1;
+                    if ((linha[i + 1] >= '0' && linha[i + 1] <= '9')) {
+                        stated3 = 1;
+
+                    } else {
+                        stated3 = 2;
+                    }
 
                 } else {
-                    stated3 = 2;
+                    stated3 = 5;
                 }
 
                 break;
@@ -437,7 +486,6 @@ void automatoStringD6(int contLinha, int numLinha, char linha[300]){
     //remove o pula linha, assim dando o valor real de caracteres
     contLinha = contLinha - 1;
     int stated6 = 0;
-    i = 0;
      while (i < contLinha) {
         switch (stated6) {
             case 0:
@@ -458,7 +506,17 @@ void automatoStringD6(int contLinha, int numLinha, char linha[300]){
                     linha[i] == '^' || linha[i] == '_' || linha[i] == '`' || linha[i] == '{' || linha[i] == '|' || linha[i] == '}' ||
                     linha[i] == '~' || (linha[i] >= 'A' && linha[i] <= 'Z') || (linha[i] >= 'a' && linha[i] <= 'z') ||
                     (linha[i] >= '0' && linha[i] <= '9')) {
-                    stated6 = 1;
+                     if (linha[i + 1] == ' '|| linha[i + 1] == '!' || linha[i + 1] == '#' || linha[i + 1] == '$' || linha[i + 1] == '%' || linha[i + 1] == '&' ||
+                        linha[i + 1] == "'" || linha[i + 1] == '(' || linha[i + 1] == ')' || linha[i + 1] == '*' || linha[i + 1] == '+' || linha[i + 1] == ',' ||
+                        linha[i + 1] == '-' || linha[i + 1] == '.' || linha[i + 1] == '/' || linha[i + 1] == ':' || linha[i + 1] == ';' || linha[i + 1] == '<' ||
+                        linha[i + 1] == '=' || linha[i + 1] == '>' || linha[i + 1] == '?' || linha[i + 1] == '@' || linha[i + 1] == '[' || linha[i + 1] == ']' ||
+                        linha[i + 1] == '^' || linha[i + 1] == '_' || linha[i + 1] == '`' || linha[i + 1] == '{' || linha[i + 1] == '|' || linha[i + 1] == '}' ||
+                        linha[i + 1] == '~' || (linha[i + 1] >= 'A' && linha[i + 1] <= 'Z') || (linha[i + 1] >= 'a' && linha[i + 1] <= 'z') ||
+                        (linha[i + 1] >= '0' && linha[i + 1] <= '9')){
+                            stated6 = 1;
+                        }else{
+                            stated6 = 2;
+                        }
 
                 } else {
                     stated6 = 2;
@@ -501,7 +559,6 @@ void automatoSeparadorSentencasE1(int contLinha, int numLinha, char linha[300]){
     //remove o pula linha, assim dando o valor real de caracteres
     contLinha = contLinha - 1;
     int statee1 = 0;
-    i = 0;
      while (i < contLinha) {
         switch (statee1) {
             case 0:
@@ -538,7 +595,6 @@ void automatoParentesesE2(int contLinha, int numLinha, char linha[300]){
     //remove o pula linha, assim dando o valor real de caracteres
     contLinha = contLinha - 1;
     int statee2 = 0;
-    i = 0;
      while (i < contLinha) {
         switch (statee2) {
             case 0:
@@ -583,7 +639,6 @@ void automatoParentesesE2(int contLinha, int numLinha, char linha[300]){
 void automatoSimbolosBrancoE7(int contLinha, int numLinha, char linha[300]){
     int i = 0;
     int statee7 = 0;
-    i = 0;
      while (i < contLinha) {
         switch (statee7) {
             case 0:
