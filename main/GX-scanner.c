@@ -59,9 +59,8 @@ int main() {
 
         /* CODE COMMENTS***************************************************************
         * Essa funcão vai ser responsável por verificar a cadeia que seja uma variavel, começando com uma letra
-        e terminando com numero ou _. Não estaria especificado que deveria terminar em letra ou só numero, apenas começar com uma ou mais letras.
-        Ter no mínimo um caractere ou no máximo 30, sendo que se chegasse nos 30 deveria descartar os excedentes,
-        que seria o que está fazendo essa função.
+        e terminando com numero ou _ ou letra. Deve começar com uma ou mais letras.
+        Ter no mínimo um caractere ou no máximo 30, sendo que se chegasse nos 30 deveria descartar os excedentes, como a função faz.
         XXX YYY.
         **************************************************************************END*/
         automatoVariavelB1(contLinha, numLinha, linha);
@@ -211,10 +210,14 @@ void automatoVariavelB1(int contLinha, int numLinha, char linha[500]){
         switch (stateb1) {
             case 0:
                 if ((linha[i] >= 'A' && linha[i] <= 'Z') || (linha[i] >= 'a' && linha[i] <= 'z')) {
-                    if((linha[i + 1] >= 'A' && linha[i + 1] <= 'Z') || (linha[i + 1] >= 'a' && linha[i + 1] <= 'z')){
-                        stateb1 = 0;
+                    if(contLinha == (i+1)){
+                        stateb1 = 2;
                     }else{
-                        stateb1 = 1;
+                        if((linha[i + 1] >= 'A' && linha[i + 1] <= 'Z') || (linha[i + 1] >= 'a' && linha[i + 1] <= 'z')){
+                            stateb1 = 0;
+                        }else{
+                            stateb1 = 1;
+                        }
                     }
 
                 } else {
