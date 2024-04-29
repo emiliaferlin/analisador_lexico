@@ -43,12 +43,18 @@ int main() {
          int contLinha = 0; // Comprimento da linha
 
          /* CODE COMMENTS***************************************************************
-        * conta o numero de caracter de cada linha, porém ignora o final da linha, que seria a quebra
+        * conta o numero de caracter de cada linha
         XXX YYY.
         **************************************************************************END*/
          for (int i = 0; linha[i] != '\0'; i++) {
             contLinha++;
         }
+
+        /* CODE COMMENTS***************************************************************
+        * remove o pula linha, assim dando o valor real de caracteres e printa esse valor
+        XXX YYY.
+        **************************************************************************END*/
+        contLinha = contLinha - 1;
 
         /* CODE COMMENTS***************************************************************
         * Essa funcão faz com que identifique uma cadeia que tenha um comentário sendo, {...}
@@ -81,7 +87,8 @@ int main() {
         automatoComparacaoC2(contLinha, numLinha, linha);
 
         /* CODE COMMENTS***************************************************************
-        *
+        * Essa funcao irá aceitar a cadeia que indica uma atribuição, começando com = e terminando com :
+        só vai aceitar essa sequencia, caso contrario rejeita
         XXX YYY.
         **************************************************************************END*/
         automatoAtribuicaoC4(contLinha, numLinha, linha);
@@ -143,8 +150,6 @@ int main() {
 void automatoComentarioA1(int contLinha, int numLinha, char linha[500]){
     int i = 0;
     int state = 0;
-    //remove o pula linha, assim dando o valor real de caracteres
-    contLinha = contLinha - 1;
     printf("\n");
 
     //statea1 == 2 é aceito, caso contrario rejeitado
@@ -190,8 +195,6 @@ void automatoComentarioA1(int contLinha, int numLinha, char linha[500]){
 void automatoVariavelB1(int contLinha, int numLinha, char linha[500]){
     int i = 0;
     int stateb1 = 0;
-    //remove o pula linha, assim dando o valor real de caracteres
-    contLinha = contLinha - 1;
 
 
     /* CODE COMMENTS***************************************************************
@@ -269,10 +272,9 @@ void automatoVariavelB1(int contLinha, int numLinha, char linha[500]){
 void palavrasReservadasB2(int contLinha, int numLinha, char linha[500]){
     int i = 0;
     int stateb2 = 0;
-    //remove o pula linha, assim dando o valor real de caracteres
-    contLinha = contLinha - 1;
 
-    //stateb2 == 2 || stateb2 == 6 || stateb2 == 9 || stateb2 == 11 || stateb2 == 15 é aceito, caso contrario rejeitado
+    //stateb2 == 2 || stateb2 == 7 || stateb2 == 15 || stateb2 == 21 || stateb2 == 26 || stateb2 == 30 || stateb2 == 35
+    //é aceito, caso contrario rejeitado
     while (i < contLinha) {
         if (stateb2 == 0) {
             if (linha[i] == 'i') {
@@ -280,74 +282,223 @@ void palavrasReservadasB2(int contLinha, int numLinha, char linha[500]){
             } else if (linha[i] == 't') {
                 stateb2 = 4;
             } else if (linha[i] == 'e') {
-                stateb2 = 7;
+                stateb2 = 8;
             } else if (linha[i] == 'r') {
-                stateb2 = 10;
-            } else if (linha[i] == 'w') {
-                stateb2 = 13;
-            } else {
                 stateb2 = 16;
+            } else if (linha[i] == 'u') {
+                stateb2 = 22;
+            }else if (linha[i] == 'w') {
+                stateb2 = 31;
+            } else {
+                stateb2 = 40;
             }
         } else if (stateb2 == 1) {
             if (linha[i] == 'f') {
                 stateb2 = 2;
             } else {
-                stateb2 = 16;
+                stateb2 = 40;
             }
         } else if (stateb2 == 4) {
             if (linha[i] == 'h') {
                 stateb2 = 5;
             } else {
-                stateb2 = 16;
+                stateb2 = 40;
             }
         } else if (stateb2 == 5) {
             if (linha[i] == 'e') {
                 stateb2 = 6;
             } else {
-                stateb2 = 16;
+                stateb2 = 40;
             }
-        } else if (stateb2 == 7) {
-            if (linha[i] == 'l') {
-                stateb2 = 8;
+        }else if (stateb2 == 6) {
+            if (linha[i] == 'n') {
+                stateb2 = 7;
             } else {
-                stateb2 = 16;
+                stateb2 = 40;
             }
         } else if (stateb2 == 8) {
-            if (linha[i] == 's') {
+            if (linha[i] == 'l') {
                 stateb2 = 9;
             } else {
-                stateb2 = 16;
+                stateb2 = 40;
+            }
+        } else if (stateb2 == 9) {
+            if (linha[i] == 's') {
+                stateb2 = 10;
+            } else {
+                stateb2 = 40;
             }
         } else if (stateb2 == 10) {
             if (linha[i] == 'e') {
                 stateb2 = 11;
-            } else if (linha[i] == 'e') {
-                stateb2 = 14;
             } else {
-                stateb2 = 16;
-            }
-        } else if (stateb2 == 14) {
-            if (linha[i] == 'a') {
-                stateb2 = 15;
-            } else {
-                stateb2 = 16;
+                stateb2 = 40;
             }
         }
+        else if (stateb2 == 11) {
+            if (linha[i] == ' ') {
+                stateb2 = 12;
+            }
+            else {
+                stateb2 = 40;
+            }
+        }
+        else if (stateb2 == 12) {
+            if (linha[i] == 'e') {
+                stateb2 = 13;
+            }
+            else {
+                stateb2 = 40;
+            }
+        }
+        else if (stateb2 == 13) {
+            if (linha[i] == 'n') {
+                stateb2 = 14;
+            }
+            else {
+                stateb2 = 40;
+            }
+        }
+        else if (stateb2 == 14) {
+            if (linha[i] == 'd') {
+                stateb2 = 15;
+            }
+            else {
+                stateb2 = 40;
+            }
+        } else if (stateb2 == 16) {
+            if (linha[i] == 'e') {
+                stateb2 = 17;
+            }
+            else {
+                stateb2 = 40;
+            }
+        }
+        else if (stateb2 == 17) {
+            if (linha[i] == 'p') {
+                stateb2 = 18;
+
+            }else if(linha[i] == 'a'){
+                stateb2 = 29;
+            }
+            else {
+                stateb2 = 40;
+            }
+        }
+        else if (stateb2 == 18) {
+            if (linha[i] == 'e') {
+                stateb2 = 19;
+            }
+            else {
+                stateb2 = 40;
+            }
+        }
+        else if (stateb2 == 19) {
+            if (linha[i] == 'a') {
+                stateb2 = 20;
+            }
+            else {
+                stateb2 = 40;
+            }
+        }
+        else if (stateb2 == 20) {
+            if (linha[i] == 't') {
+                stateb2 = 21;
+            }
+            else {
+                stateb2 = 40;
+            }
+        }
+         else if (stateb2 == 22) {
+            if (linha[i] == 'n') {
+                stateb2 = 23;
+            }
+            else {
+                stateb2 = 40;
+            }
+        }
+         else if (stateb2 == 23) {
+            if (linha[i] == 't') {
+                stateb2 = 24;
+            }
+            else {
+                stateb2 = 40;
+            }
+        }
+         else if (stateb2 == 24) {
+            if (linha[i] == 'i') {
+                stateb2 = 25;
+            }
+            else {
+                stateb2 = 40;
+            }
+        }
+        else if (stateb2 == 25) {
+            if (linha[i] == 'l') {
+                stateb2 = 26;
+            }
+            else {
+                stateb2 = 40;
+            }
+        }
+
+         else if (stateb2 == 29) {
+            if (linha[i] == 'd') {
+                stateb2 = 30;
+            }
+            else {
+                stateb2 = 40;
+            }
+        }
+        else if (stateb2 == 31) {
+            if (linha[i] == 'r') {
+                stateb2 = 32;
+            }
+            else {
+                stateb2 = 40;
+            }
+        }
+        else if (stateb2 == 32) {
+            if (linha[i] == 'i') {
+                stateb2 = 33;
+            }
+            else {
+                stateb2 = 40;
+            }
+        }
+        else if (stateb2 == 33) {
+            if (linha[i] == 't') {
+                stateb2 = 34;
+            }
+            else {
+                stateb2 = 40;
+            }
+        }
+        else if (stateb2 == 34) {
+            if (linha[i] == 'e') {
+                stateb2 = 35;
+            }
+            else {
+                stateb2 = 40;
+            }
+        }
+
         i++;
     }
 
-     if (stateb2 == 2 || stateb2 == 6 || stateb2 == 9 || stateb2 == 11 || stateb2 == 15) {
-        printf("#%d", numLinha);
-        printf(" --> TKN_RESWORD --> ");
-        printf("Accept --> ");
-        printf("%s ", linha);
-        printf("\n");
-    } else {
-        printf("#%d", numLinha);
-        printf(" --> TKN_RESWORD --> ");
-        printf("Reject --> ");
-        printf("%s ", linha);
-        printf("\n");
+
+        if (stateb2 == 2 || stateb2 == 7 || stateb2 == 15 || stateb2 == 21 || stateb2 == 26 || stateb2 == 30 || stateb2 == 35) {
+            printf("#%d", numLinha);
+            printf(" --> TKN_RESWORD --> ");
+            printf("Accept --> ");
+            printf("%s ", linha);
+            printf("\n");
+        }else {
+            printf("#%d", numLinha);
+            printf(" --> TKN_RESWORD --> ");
+            printf("Reject --> ");
+            printf("%s ", linha);
+            printf("\n");
     }
 
 
@@ -356,8 +507,6 @@ void palavrasReservadasB2(int contLinha, int numLinha, char linha[500]){
 void automatoComparacaoC2(int contLinha, int numLinha, char linha[500]){
     int i = 0;
     int statec2 = 0;
-    //remove o pula linha, assim dando o valor real de caracteres
-    contLinha = contLinha - 1;
     int maior = 0;
     int menor = 0;
     int diferente = 0;
@@ -452,8 +601,6 @@ void automatoComparacaoC2(int contLinha, int numLinha, char linha[500]){
 void automatoAtribuicaoC4(int contLinha, int numLinha, char linha[500]){
     int i = 0;
     int statec4 = 0;
-    //remove o pula linha, assim dando o valor real de caracteres
-    contLinha = contLinha - 1;
 
     //statec4 == 2 é aceito, caso contrario rejeitado
      while (i < contLinha) {
@@ -501,9 +648,6 @@ void automatoAtribuicaoC4(int contLinha, int numLinha, char linha[500]){
 void automatoReaisD3(int contLinha, int numLinha, char linha[500]){
     int i = 0;
     int stated3 = 0;
-    //remove o pula linha, assim dando o valor real de caracteres
-    contLinha = contLinha - 1;
-
 
     //stated3 == 3 é aceito, caso contrario rejeitado
      while (i < contLinha) {
@@ -514,8 +658,8 @@ void automatoReaisD3(int contLinha, int numLinha, char linha[500]){
                 tem que ter no minimo 4 caracteres com sinal e no maximo 14 com sinal,
                 XXX YYY.
                 **************************************************************************END*/
-                if (linha[i] == '-' && (contLinha < 4 || contLinha > 14)) {
-                    stated3 = 1;
+                if (linha[i] == '-' && (contLinha >= 4 || contLinha <= 14)) {
+                    stated3 = 0;
 
                 } else {
                     /* CODE COMMENTS***************************************************************
@@ -523,27 +667,18 @@ void automatoReaisD3(int contLinha, int numLinha, char linha[500]){
                     tem que ter no minimo 3 caracteres sem sinal e no maximo 13 sem sinal,
                     XXX YYY.
                     **************************************************************************END*/
-                    if((linha[i] >= '0' && linha[i] <= '9') && (contLinha < 3 || contLinha > 13)){
-                        stated3 = 1;
-                    }else{
-                        stated3 = 5;
-                    }
-                }
+                    if ((linha[i] >= '0' && linha[i] <= '9') && (contLinha >= 3 || contLinha <= 13)) {
+                    stated3 = 0;
+                        if ((linha[i + 1] >= '0' && linha[i + 1] <= '9')) {
+                            stated3 = 0;
 
-                break;
-
-            case 1:
-                if ((linha[i] >= '0' && linha[i] <= '9')) {
-                    stated3 = 1;
-                    if ((linha[i + 1] >= '0' && linha[i + 1] <= '9')) {
-                        stated3 = 1;
+                        } else {
+                            stated3 = 2;
+                        }
 
                     } else {
-                        stated3 = 2;
+                        stated3 = 5;
                     }
-
-                } else {
-                    stated3 = 5;
                 }
 
                 break;
@@ -590,8 +725,6 @@ void automatoReaisD3(int contLinha, int numLinha, char linha[500]){
 void automatoStringD6(int contLinha, int numLinha, char linha[500]){
     int i = 0;
     int stated6 = 0;
-    //remove o pula linha, assim dando o valor real de caracteres
-    contLinha = contLinha - 1;
 
 
     //stated6 == 3 é aceito, caso contrario rejeitado
@@ -673,14 +806,12 @@ void automatoSeparadorSentencasE1(int contLinha, int numLinha, char linha[500]){
     int i = 0;
     int statee1 = 0;
 
-    //remove o pula linha, assim dando o valor real de caracteres
-    contLinha = contLinha - 1;
 
     //statee1 == 2 é aceito, caso contrario rejeitado
      while (i < contLinha) {
         switch (statee1) {
             case 0:
-                if (linha[i] == ';') {
+                if (linha[i] == ';' && contLinha == 1) {
                     statee1 = 2;
 
                 } else {
@@ -711,9 +842,6 @@ void automatoSeparadorSentencasE1(int contLinha, int numLinha, char linha[500]){
 void automatoParentesesE2(int contLinha, int numLinha, char linha[500]){
     int i = 0;
     int statee2 = 0;
-
-    //remove o pula linha, assim dando o valor real de caracteres
-    contLinha = contLinha - 1;
 
     //statee2 == 2 é aceito, se não é rejeitado
      while (i < contLinha) {
@@ -760,9 +888,13 @@ void automatoParentesesE2(int contLinha, int numLinha, char linha[500]){
 void automatoSimbolosBrancoE7(int contLinha, int numLinha, char linha[500]){
     int i = 0;
     int statee7 = 0;
+    int contLinhaAux = 0;
+
+    //remove o pula linha, assim dando o valor real de caracteres
+    contLinhaAux = contLinha + 1;
 
     //statee7 == 1 é aceito, caso contrário é erro
-     while (i < contLinha) {
+     while (i < contLinhaAux) {
         switch (statee7) {
             case 0:
                 if (linha[i] == ' ' || linha[i] == '\t' || linha[i] == '\n' || linha[i] == '\r') {
