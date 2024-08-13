@@ -1,0 +1,28 @@
+{TKN_COMMENT single line}
+{TKN_COMMENT multi 
+line}
+
+{TKN_VAR}
+abc
+abc123
+abc_123
+
+{TKN_RESWORD}
+if
+then
+else
+end
+repeat
+until
+read
+write
+
+{TKN_ASSIGN}
+:=
+
+{TKN_STMSEP}
+;
+
+{TKN_PARLEFT, TKN_PARRIGHT}
+(
+)
